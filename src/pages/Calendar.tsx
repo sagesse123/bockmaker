@@ -22,7 +22,7 @@ export default function Calendar() {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/v1/calendar");
+        const response = await axios.get("https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/calendar");
         if (response.data.status === "success") {
           setMatches(response.data.calendar);
         } else {

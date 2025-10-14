@@ -47,7 +47,7 @@ const getTimeUntilMatch = (matchDate: string) => {
   const hours = Math.floor((diffMinutes % (60 * 24)) / 60);
   const minutes = diffMinutes % 60;
 
-  if (days > 0) return `Begin in ${days} days${days > 1 ? 's' : ''}`;
+  if (days > 0) return `Begin in ${days} day${days > 1 ? 's' : ''}`;
   if (hours > 0) return `Begin at ${hours}h ${minutes}min`;
   return `Begin at ${minutes}min`;
 };
@@ -70,7 +70,7 @@ export default function Matches() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/v1/leagues');
+        const res = await fetch('https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/leagues');
         if (!res.ok) throw new Error(`Erreur ${res.status}`);
         const json = await res.json();
 
@@ -117,12 +117,12 @@ export default function Matches() {
       let matchesData: any[] = [];
 
       if (competitionId === 'all') {
-        const res = await fetch('http://localhost:8000/api/v1/fixtures');
+        const res = await fetch('https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/fixtures');
         if (!res.ok) throw new Error(`Erreur ${res.status}`);
         const json = await res.json();
         matchesData = json.fixtures ?? [];
       } else {
-        const res = await fetch(`http://localhost:8000/api/v1/competitions/${competitionId}/matches`);
+        const res = await fetch(`https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/competitions/${competitionId}/matches`);
         if (!res.ok) throw new Error(`Erreur ${res.status}`);
         const json = await res.json();
         matchesData = json.matches ?? [];

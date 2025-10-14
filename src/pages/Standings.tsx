@@ -34,7 +34,7 @@ export default function Standings() {
   useEffect(() => {
     const fetchLeagues = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:8000/api/v1/leagues");
+        const res = await axios.get("https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/leagues");
         if (res.data.status === "success") {
           setLeagues(res.data.leagues);
         }
@@ -55,7 +55,7 @@ useEffect(() => {
       setLoading(true);
 
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/v1/leagues/${selectedLeague}/standings`
+        `https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/leagues/${selectedLeague}/standings`
       );
 
       // On récupère la table depuis le premier élément de standings
