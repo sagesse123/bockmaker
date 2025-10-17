@@ -141,13 +141,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   href="https://t.me/tfahaku"
                   className="text-blue-400 hover:text-blue-300"
                 >
-                  @tfahaku
+                  @tfahakus
                 </a>
               </p>
               <p className="text-slate-400 text-sm">
                 Canal télégramme:{" "}
                 <a
-                  href="https://t.me/rejoindre"
+                  href="https://t.me/lteprob"
                   className="text-blue-400 hover:text-blue-300"
                 >
                   Rejoindre
