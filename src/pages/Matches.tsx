@@ -153,77 +153,85 @@ export default function Matches() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="mb-8 flex gap-4">
-        <input
-          type="text"
-          placeholder="Rechercher une équipe..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white"
-        />
-        <select
-          value={selectedCompetition}
-          onChange={(e) =>
-            setSelectedCompetition(e.target.value === 'all' ? 'all' : Number(e.target.value))
-          }
-          className="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white"
-        >
-          <option value="all">Toutes les compétitions</option>
-          {competitions.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-      </div>
+  <div className="max-w-7xl mx-auto px-4 py-12">
+    {/* Barre de recherche et filtre */}
+    <div className="mb-8 flex flex-col sm:flex-row gap-4">
+      <input
+        type="text"
+        placeholder="Rechercher une équipe..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="w-full sm:flex-1 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
 
-      {loading ? (
-        <p className="text-white">Chargement...</p>
-      ) : filteredMatches.length === 0 ? (
-        <p className="text-slate-400">Aucun match trouvé</p>
-      ) : (
-        <div className="space-y-4">
-          {filteredMatches.map((m) => (
-            <div
-              key={m.id}
-              className="block bg-slate-800/50 rounded-xl p-6 border border-slate-700/50 hover:border-slate-500 transition"
-            >
-              <div className="flex justify-between mb-2 items-center">
-                <div className="flex items-center gap-2">
-                  {m.competition?.emblem && (
-                    <img src={m.competition.emblem} alt="" className="w-6 h-6 rounded-full" />
-                  )}
-                  <span className="text-blue-400 text-sm">{m.competition?.name}</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-400 text-sm">
-                  <Clock size={14} />
-                  <span>{getTimeUntilMatch(m.match_date)}</span>
-                </div>
+      <select
+        value={selectedCompetition}
+        onChange={(e) =>
+          setSelectedCompetition(e.target.value === 'all' ? 'all' : Number(e.target.value))
+        }
+        className="w-full sm:w-auto bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="all">Toutes les compétitions</option>
+        {competitions.map((c) => (
+          <option key={c.id} value={c.id}>
+            {c.name}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    {/* Contenu des matchs */}
+    {loading ? (
+      <p className="text-white">Chargement...</p>
+    ) : filteredMatches.length === 0 ? (
+      <p className="text-slate-400">Aucun match trouvé</p>
+    ) : (
+      <div
+        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        {filteredMatches.map((m) => (
+          <div
+            key={m.id}
+            className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/50 hover:border-slate-500 transition-all hover:scale-[1.02] shadow-md"
+          >
+            <div className="flex justify-between mb-2 items-center">
+              <div className="flex items-center gap-2 overflow-hidden">
+                {m.competition?.emblem && (
+                  <img src={m.competition.emblem} alt="" className="w-5 h-5 rounded-full flex-shrink-0" />
+                )}
+                <span className="text-blue-400 text-xs truncate">{m.competition?.name}</span>
               </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-right text-white">
-                  {m.homeTeam.crest && <img src={m.homeTeam.crest} alt="" className="w-8 h-8" />}
-                  <span>{m.homeTeam.name}</span>
-                </div>
-
-                <div className="px-4 text-xl text-white font-bold">
-                  {m.status === 'finished' || m.status === 'live'
-                    ? `${m.home_score ?? 0} - ${m.away_score ?? 0}`
-                    : 'VS'}
-                </div>
-
-                <div className="flex items-center gap-2 text-white">
-                  <span>{m.awayTeam.name}</span>
-                  {m.awayTeam.crest && <img src={m.awayTeam.crest} alt="" className="w-8 h-8" />}
-                </div>
+              <div className="flex items-center gap-1 text-slate-400 text-xs">
+                <Clock size={12} />
+                <span className="truncate">{getTimeUntilMatch(m.match_date)}</span>
               </div>
             </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+
+            <div className="flex flex-col items-center justify-center text-center space-y-2">
+              {/* Équipe à domicile */}
+              <div className="flex items-center justify-center gap-2 text-white w-full truncate">
+                {m.homeTeam.crest && <img src={m.homeTeam.crest} alt="" className="w-6 h-6 flex-shrink-0" />}
+                <span className="truncate">{m.homeTeam.name}</span>
+              </div>
+
+              {/* Score */}
+              <div className="text-lg font-bold text-white">
+                {m.status === 'finished' || m.status === 'live'
+                  ? `${m.home_score ?? 0} - ${m.away_score ?? 0}`
+                  : 'VS'}
+              </div>
+
+              {/* Équipe à l’extérieur */}
+              <div className="flex items-center justify-center gap-2 text-white w-full truncate">
+                <span className="truncate">{m.awayTeam.name}</span>
+                {m.awayTeam.crest && <img src={m.awayTeam.crest} alt="" className="w-6 h-6 flex-shrink-0" />}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+);
 }
 

@@ -71,9 +71,16 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/matches"
-                className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-2xl shadow-blue-600/50 hover:shadow-blue-600/70 hover:scale-105"
+                className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-green-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-2xl shadow-blue-600/50 hover:shadow-blue-600/70 hover:scale-105"
               >
                 <span>Voir les matchs</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                to="/bookmakers"
+                className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-2xl shadow-blue-600/50 hover:shadow-blue-600/70 hover:scale-105"
+              >
+                <span>Inscrivez vous</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link

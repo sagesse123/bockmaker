@@ -7,7 +7,7 @@ export default function Bonus() {
 
   useEffect(() => {
     const updateBonus = () => {
-      const newBonus = Math.floor(Math.random() * (100000000 - 99000 + 1)) + 99000;
+      const newBonus = Math.floor(Math.random() * (10 - 99000 + 1)) + 99000;
       animateNumber(setBonusAmount, bonusAmount, newBonus, 2000);
 
       const nextInterval = Math.floor(Math.random() * 60 + 1) * 60 * 10;
@@ -20,7 +20,7 @@ export default function Bonus() {
       const today = new Date();
       const startDate = new Date("2025-08-25");
       const daysElapsed = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-      const currentCount = 201587 + daysElapsed;
+      const currentCount = 5000 + daysElapsed;
       setPromoUsersCount(currentCount);
     };
 
