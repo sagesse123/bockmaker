@@ -11,15 +11,15 @@ type Bookmaker = {
 };
 
 export default function Home() {
-  const bookmakers: Bookmaker[] = [
-    { id: 1, name: '1XBET', logo: '/logos/1xbet.png', rating: 4.8, color: 'bg-blue-600' },
-    { id: 2, name: 'MELBET', logo: '/logos/melbet.png', rating: 4.7, color: 'bg-orange-500' },
-    { id: 3, name: 'BETWINNER', logo: '/logos/betwinner.png', rating: 4.6, color: 'bg-green-600' },
-    { id: 4, name: 'MOSTBET', logo: '/logos/mostbet.png', rating: 4.5, color: 'bg-red-500' },
-    { id: 5, name: 'MEGAPARI', logo: '/logos/megapari.png', rating: 4.4, color: 'bg-gray-700' },
-    { id: 6, name: 'BETANDYOU', logo: '/logos/betandyou.png', rating: 4.3, color: 'bg-blue-500' },
-    { id: 7, name: 'LINEBET', logo: '/logos/linebet.png', rating: 4.2, color: 'bg-gray-600' },
-    { id: 8, name: 'PARIPESA', logo: '/logos/paripesa.png', rating: 4.1, color: 'bg-purple-600' },
+   const bookmakers: Bookmaker[] = [
+    { id: 1, name: '1XBET', rating: 4.8, color: '#1E40AF', bonus_description: '100% jusqu’à 200€', url: 'https://reffpa.com/L?tag=d_4654245m_97c_&site=4654245&ad=97' },
+    { id: 2, name: 'MELBET', rating: 4.7, color: '#F59E0B', bonus_description: 'Bonus de bienvenue 100€', url: 'https://refpa3665.com/L?tag=d_4687174m_45415c_&site=4687174&ad=45415' },
+    { id: 3, name: 'BETWINNER', rating: 4.6, color: '#16A34A', bonus_description: '100% jusqu’à 130€', url: 'https://betwinner.com/' },
+    { id: 4, name: 'MOSTBET', rating: 4.5, color: '#EF4444', bonus_description: '125% jusqu’à 300€', url: 'https://mostbet.com/' },
+    { id: 5, name: 'MEGAPARI', rating: 4.4, color: '#374151', bonus_description: 'Bonus de 100% au dépôt', url: 'https://refpazitag.top/L?tag=d_1168201m_25437c_&site=1168201&ad=25437' },
+    { id: 6, name: 'BETANDYOU', rating: 4.3, color: '#2563EB', bonus_description: 'Bonus exclusif jusqu’à 150€', url: 'https://betandyou.com/' },
+    { id: 7, name: 'LINEBET', rating: 4.2, color: '#6B7280', bonus_description: 'Jusqu’à 100€ offerts', url: 'https://linebet.com/' },
+    { id: 8, name: 'PARIPESA', rating: 4.1, color: '#9333EA', bonus_description: 'Bonus de bienvenue 100%', url: 'https://paripesa.bet/ltrpro' },
   ];
 
   const loading = false;
@@ -122,16 +122,24 @@ export default function Home() {
             <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {bookmakers.map((bookmaker) => (
-              <BookmakerCard
-                key={bookmaker.id}
-                bookmaker={bookmaker}
-                featured={bookmaker.rating >= 4.5}
-                color={bookmaker.color} 
-              />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+	  {bookmakers.map((bookmaker) => (
+	    <a
+	      key={bookmaker.id}
+	      href={bookmaker.url || '#'}
+	      target="_blank"
+	      rel="noopener noreferrer"
+	      className="block" // pour garder le style de carte cliquable
+	    >
+	      <BookmakerCard
+		bookmaker={bookmaker}
+		featured={bookmaker.rating >= 4.5}
+		color={bookmaker.color}
+	      />
+	    </a>
+	  ))}
+	</div>
+
         )}
 
         <div className="text-center">
