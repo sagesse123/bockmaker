@@ -70,7 +70,7 @@ export default function Matches() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/leagues');
+        const res = await fetch('https://disabled-moira-sagesse123-5f6de789.koyeb.app/api/v1/leagues');
         if (!res.ok) throw new Error(`Erreur ${res.status}`);
         const json = await res.json();
 
