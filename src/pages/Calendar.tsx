@@ -22,7 +22,7 @@ export default function Calendar() {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await axios.get("https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/calendar");
+        const response = await axios.get("https://disabled-moira-sagesse123-5f6de789.koyeb.app/api/v1/calendar");
         if (response.data.status === "success") {
           setMatches(response.data.calendar);
         } else {

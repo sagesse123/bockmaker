@@ -117,12 +117,12 @@ export default function Matches() {
       let matchesData: any[] = [];
 
       if (competitionId === 'all') {
-        const res = await fetch('https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/fixtures');
+        const res = await fetch('https://disabled-moira-sagesse123-5f6de789.koyeb.app/api/v1/fixtures');
         if (!res.ok) throw new Error(`Erreur ${res.status}`);
         const json = await res.json();
         matchesData = json.fixtures ?? [];
       } else {
-        const res = await fetch(`https://powerful-almira-sofosprod-2dddd0a4.koyeb.app/api/v1/competitions/${competitionId}/matches`);
+        const res = await fetch(`https://disabled-moira-sagesse123-5f6de789.koyeb.app/api/v1/competitions/${competitionId}/matches`);
         if (!res.ok) throw new Error(`Erreur ${res.status}`);
         const json = await res.json();
         matchesData = json.matches ?? [];
